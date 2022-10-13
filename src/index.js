@@ -8,7 +8,11 @@ class Square extends React.Component {
       // Notice the onClick will trigger the onClick on the Board component
       // Which then triggers the handleClick()
       // Also the {this.props.value} fetchs the value from the property passed down
-      <button className='square' onClick={() => this.props.onClick()}>
+      <button
+        className='square'
+        onClick={() => this.props.onClick()}
+        onDoubleClick={() => console.log('Double')}
+      >
         {this.props.value}
       </button>
     )
@@ -20,7 +24,7 @@ class Board extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      squares: Array(9).fill(null),
+      squares: [],
     }
   }
 
@@ -32,6 +36,7 @@ class Board extends React.Component {
 
   renderSquare(i) {
     // Passing values via Properties
+    // Diagram: Board (handleClick() & value) -> Square  -> onClick & value
     return (
       <Square
         value={this.state.squares[i]}
